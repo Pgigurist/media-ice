@@ -1,1 +1,3 @@
 ./static/*
+./general/static/*
+./static_cdn/*
