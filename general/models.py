@@ -35,10 +35,10 @@ class Feedback(models.Model):
     text = models.TextField(blank=True)
     moderate = models.BooleanField(default=False)
 
+
     class Meta:
         verbose_name = 'отзыв'
         verbose_name_plural = 'отзывы'
-
 
     def __str__(self):
         string = self.name

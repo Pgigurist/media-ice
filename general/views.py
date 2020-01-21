@@ -6,7 +6,7 @@ from .forms import FeedbackForm
 
 def index(req):
     context = {
-        'photos' : '',
+        'photos' : Photo.objects.all().reverse()[:3],
         'posts' : ''
     }
     return render(req, 'general/index.html', context)
