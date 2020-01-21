@@ -48,3 +48,4 @@ class Feedback(models.Model):
             string += ' (новое)'
         return string
 
+
