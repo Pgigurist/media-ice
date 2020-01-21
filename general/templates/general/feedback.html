@@ -1,0 +1,60 @@
+{% extends "general/base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="row pt-4">
+		{% for post in posts %}
+         {% if post.moderate %}
+            <div class="col-md-4 col-lg-4 col-sm-6">
+               <div class="card mx-auto m-2">
+                  <div class="card-body">
+                     <h5 class="card-title">{{post.name}}</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">{{post.city}}</h6>
+                     <p class="card-text">{{post.text}}</p>
+                  </div>
+               </div>
+             </div>
+         {% endif %}
+		{% endfor %}
+	</div>
+	<div class="row pt-3">
+      <div class="col-sm-6 col-lg-4 col-md-4">
+         <button data-toggle="modal", data-target="#formModal" class="btn btn-primary">
+            оставить отзыв
+         </button>
+      </div>
+	</div>
+</div>
+<div tabindex="-1" role="dialog" aria-labelledby="form-modal" aria-hidden="true" id="formModal" class="modal fade">
+   <div role="document" class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Ваш отзыв</h5>
+            <button data-dismiss="modal" type="button" aria-label="Close" class="close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form action="#" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="form-group">
+                  <label for="inputName">Ваше имя</label>
+                  <input name="name" type="text" value="" aria-describedby="nameHelp" placeholder="введите имя" id="inputName" value="" class="text form-control">
+                  <small class="form-text text-muted" id="nameHelp">ваше имя будет доступно другим пользователем</small>
+               </div>
+               <div class="form-group">
+                  <label for="inputCity">Ваш город</label>
+                  <input name="city" type="text" value="" aria-describedby="cityHelp" placeholder="ввеите город" id="inputCity" value="" class="text form-control">
+                  <small class="form-text text-muted" id="cityHelp">ваше имя будет доступно другим пользователем</small>
+               </div>
+               <div class="form-group">
+                  <label for="inputText">Ваш отзыв</label>
+                  <textarea name="text" rows="3" class="form-control" id="inputText"></textarea>
+               </div>
+               <button type="submit" class="btn btn-primary">поделиться</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
