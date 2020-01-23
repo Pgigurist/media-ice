@@ -2,7 +2,6 @@ from django.db import models
 # Create your models here.
 
 
-
 class Participant(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=80)
@@ -22,16 +21,19 @@ class Participant(models.Model):
 
    
 class Event(models.Model):
+    # primary fields
     name = models.CharField(max_length=150)
     place = models.CharField(max_length=200, blank=True)
     short_name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=10)
     date_start = models.DateField()
     date_end = models.DateField()
+    description = models.TextField()
+    # custom fields
     annoncment = models.FileField(blank=True)
     event_protocol = models.FileField(blank=True)
     published = models.BooleanField(default=False)
-
+    youtube_link = models.URLField(blank=True)
 
     class Meta:
         verbose_name = 'соревнование'
@@ -54,12 +56,14 @@ class Category(models.Model):
         return self.name
 
 class Segment(models.Model):
-    name = models.CharField(max_length=50)
+    # choices dictionary
     GENDER_CHOICES = (
         ('M', 'Мужчины/Юноши/Мальчики'),
         ('F', 'Женщины/Девушки/Девочки'),
         ('C', 'Пары'),
     )
+
+    name = models.CharField(max_length=50)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     category = models.ForeignKey(Category, related_name='category_id', on_delete=models.CASCADE)
 
@@ -79,5 +83,19 @@ class Entry(models.Model):
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
+    def __str__(self):
+        name = self.participant.last_name
+        return name+' '+self.category.name
 
+class Performance(models.Model):
+    segment = models.ForeignKey(Segment, on_delete=models.CASCADE)
+    entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
+    start_number = models.IntegerField(default=0)
+    points = models.FloatField(default=0.0)
+    music = models.FileField(blank=True)
+
+    class Meta:
+        verbose_name = 'Прокат'
+        verbose_name_plural = 'Прокаты'
+    
 

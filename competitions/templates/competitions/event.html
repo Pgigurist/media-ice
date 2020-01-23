@@ -16,9 +16,7 @@
             </div>
             <div class="row pt-3">
                <div class="col-sm-6 col-lg-4 col-md-4">
-                  <button data-toggle="modal", data-target="#formModal" class="btn btn-success">
-                  заявиться
-                  </button>
+                  <a href="{% url 'add_entry' event_id=event.id %}">добавит заявку</a>
                </div>
 	         </div>
             
