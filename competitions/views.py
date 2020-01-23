@@ -34,3 +34,12 @@ def event(req, event_id):
     
     return render(req, 'competitions/event.html', context)
 
+def category(req, category_id):
+
+    category = Category.objects.get(pk=category_id) 
+    context = {
+        'category' : category,
+        'participants' : Entry.objects.filter(category=category)
+    }
+
+    return render(req, 'competitions/category.html', context)

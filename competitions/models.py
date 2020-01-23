@@ -28,7 +28,10 @@ class Event(models.Model):
     abbreviation = models.CharField(max_length=10)
     date_start = models.DateField()
     date_end = models.DateField()
+    annoncment = models.FileField(blank=True)
+    event_protocol = models.FileField(blank=True)
     published = models.BooleanField(default=False)
+
 
     class Meta:
         verbose_name = 'соревнование'
@@ -53,9 +56,9 @@ class Category(models.Model):
 class Segment(models.Model):
     name = models.CharField(max_length=50)
     GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('C', 'Couple'),
+        ('M', 'Мужчины/Юноши/Мальчики'),
+        ('F', 'Женщины/Девушки/Девочки'),
+        ('C', 'Пары'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     category = models.ForeignKey(Category, related_name='category_id', on_delete=models.CASCADE)

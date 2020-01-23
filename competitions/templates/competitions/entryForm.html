@@ -1,0 +1,41 @@
+{% block entryForm %}
+<div tabindex="-1" role="dialog" aria-labelledby="form-modal" aria-hidden="true" id="formModal" class="modal fade">
+   <div role="document" class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Ваша заявка</h5>
+            <button data-dismiss="modal" type="button" aria-label="Close" class="close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form action="#" method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="form-group">
+                  <label for="inputName">Имя</label>
+                  <input name="name" type="text" value="" aria-describedby="nameHelp" placeholder="введите имя" id="inputName" value="" class="text form-control">
+                  <small class="form-text text-muted" id="nameHelp">
+                     Имя участвующего спортсмена
+                  </small>
+               </div>
+               <div class="form-group">
+                  <label for="inputName">Фамилия</label>
+                  <input name="name" type="text" value="" aria-describedby="nameHelp" placeholder="введите имя" id="inputName" value="" class="text form-control">
+                  <small class="form-text text-muted" id="nameHelp">
+                     Фамилия участвующего спортсмена
+                  </small>
+               </div>
+
+               <div class="form-group">
+                  <label for="inputCity">Ваш город</label>
+                  <input name="city" type="text" value="" aria-describedby="cityHelp" placeholder="ввеите город" id="inputCity" value="" class="text form-control">
+                  <small class="form-text text-muted" id="cityHelp">Город, который спортсмен представляет</small>
+               </div>
+           
+               <button type="submit" class="btn btn-primary">поделиться</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
