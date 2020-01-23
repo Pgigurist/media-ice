@@ -20,8 +20,17 @@ def list(req):
         }
     """
     return render(req, 'competitions/list.html', context)
+
 def event(req, event_id):
-    print('get event req')
-    print(event_id)
-    pass
+    
+    event = Event.objects.get(pk=event_id)
+    categories = Category.objects.filter(event=event)
+    #event.objects.select_related().all()
+
+    context = {
+        'event' : event,
+        'categories' : categories,
+    }
+    
+    return render(req, 'competitions/event.html', context)
 

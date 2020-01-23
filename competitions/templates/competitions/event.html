@@ -1,0 +1,28 @@
+{% extends "general/base.html" %}
+{% block content %}
+   <div class="container">
+      <div class="row pt-4">
+         <div class="col">
+            <h3>{{event.name}}</h3>
+            <h4>{{event.place}}</h4>
+            {% if event.date_start == event.date_end %}
+               <h4>{{event.date_start}}</h4>
+            {% else %}
+               <h4>{{event.date_start}} / {{event.date_end}}</h4>
+            {% endif %}
+
+         </div>
+      </div>
+      <div class="row">
+         <div class="col">
+            {% for category in categories %}
+               <div class="row">
+                  <div class="col">
+                     <h5>{{category.name}}</h5>
+                  </div>
+               </div>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+{% endblock %}

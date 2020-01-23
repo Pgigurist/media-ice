@@ -40,7 +40,7 @@ class Category(models.Model):
     name = models.CharField(max_length=150)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField()
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, related_name='event_id', on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
 
     class Meta:
@@ -58,7 +58,7 @@ class Segment(models.Model):
         ('C', 'Couple'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category_id', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Сегмент'
@@ -70,6 +70,8 @@ class Segment(models.Model):
 class Entry(models.Model):
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    payment = models.BooleanField(default=False)
+    music = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Заявка'

@@ -4,7 +4,7 @@ from .models import Event, Participant, Category, Segment, Entry
 # Register your models here.
 
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('participant', 'category')
+    list_display = ('participant', 'category', 'payment' ,'music')
 
 class EntryInLine(admin.TabularInline):
     model = Entry
