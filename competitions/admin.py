@@ -3,11 +3,7 @@ from .models import Event, Participant, Category, Segment, Entry, Performance
 
 # Register your models here.
 
-class EntryAdmin(admin.ModelAdmin):
-    list_display = ('participant', 'category', 'payment' ,'music')
 
-class PerformanceAdmin(admin.ModelAdmin):
-    list_display = ('segment', 'entry', 'start_number', 'points')
        
 
 class EntryInLine(admin.TabularInline):
@@ -22,6 +18,14 @@ class PerformanceInline(admin.TabularInline):
 class SegmentsInline(admin.TabularInline):
     model = Segment
 
+class EntryAdmin(admin.ModelAdmin):
+    list_display = ('participant', 'category', 'payment' ,'music')
+    
+
+    inlines = [
+        PerformanceInline,
+    ]
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'event', 'date_start', 'date_end')
     inlines = [
@@ -29,6 +33,9 @@ class CategoryAdmin(admin.ModelAdmin):
         EntryInLine,
     ] 
         
+class PerformanceAdmin(admin.ModelAdmin):
+    list_display = ('segment', 'entry', 'start_number', 'points')
+
 class SegmentAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'gender')
     inlines = [

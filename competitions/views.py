@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Event, Category, Participant, Entry
 #from .forms import ParticipantFormset
 # Create your views here.
+from django.conf import settings
 
 def list(req):
     context = {
@@ -23,6 +24,7 @@ def list(req):
 
 def event(req, event_id):
     
+    print(settings.MUSIC_DIR)
     event = Event.objects.get(pk=event_id)
     categories = Category.objects.filter(event=event)
     #event.objects.select_related().all()
@@ -61,4 +63,6 @@ def addEntry(req, event_id):
         entry.save()
 
     return render(req, 'competitions/participant_form.html', context)
+    
+
 

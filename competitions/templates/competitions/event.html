@@ -12,11 +12,14 @@
                   {% else %}
                      <h4>{{event.date_start}} / {{event.date_end}}</h4>
                   {% endif %}
+                  <p>
+                     {{event.description}}
+                  </p>
                </div>
             </div>
             <div class="row pt-3">
                <div class="col-sm-6 col-lg-4 col-md-4">
-                  <a href="{% url 'add_entry' event_id=event.id %}">добавит заявку</a>
+                  <a href="{% url 'add_entry' event_id=event.id %}">добавить заявку</a>
                </div>
 	         </div>
             

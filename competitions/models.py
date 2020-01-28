@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 # Create your models here.
 
 
@@ -87,15 +88,20 @@ class Entry(models.Model):
         name = self.participant.last_name
         return name+' '+self.category.name
 
+def content_file_name(instance, filename):
+    return settings.MUSIC_DIR.join+instance.user.id+filename
+
 class Performance(models.Model):
     segment = models.ForeignKey(Segment, on_delete=models.CASCADE)
     entry = models.ForeignKey(Entry, on_delete=models.CASCADE)
     start_number = models.IntegerField(default=0)
     points = models.FloatField(default=0.0)
-    music = models.FileField(blank=True)
+
+
+    music = models.FileField(upload_to=settings.MUSIC_DIR, blank=True)
+    
 
     class Meta:
         verbose_name = 'Прокат'
         verbose_name_plural = 'Прокаты'
-    
 
