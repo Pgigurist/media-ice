@@ -1,1 +1,4 @@
 ./static/*
+./general/static/*
+./static_cdn/*
+./db.sqlite3

@@ -5,7 +5,7 @@ from .models import Post, Feedback, Photo
 
 class FeedbackAdmin(admin.ModelAdmin):
     
-    list_display = ('pub_date', 'city', 'moderate')
+    list_display = ('__str__', 'pub_date', 'city', 'moderate')
     list_filter = ['moderate', 'pub_date']
     search_fields = ['city']
 
