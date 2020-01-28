@@ -15,12 +15,12 @@
       </style>
 	</head>
 	<body>
-		<header class="sticky-top">
-			<!rm{% block header %}{% endblock %}->
-			{% include "general/header.html" %}
+		<header>
+         {% include "general/header.html" %}
 		</header>
-            {% block content %}
-            {% endblock %}
+			{% include "general/navbar.html" %}
+         {% block content %}
+         {% endblock %}
 		<footer class="page-footer font-small sticky-bottom light mt-5">
 			{% include "general/footer.html" %}
 		</footer>
