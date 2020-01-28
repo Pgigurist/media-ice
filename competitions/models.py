@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from general.models import EventBase
 # Create your models here.
 
 
@@ -21,8 +22,9 @@ class Participant(models.Model):
         return self.full_name()
 
    
-class Event(models.Model):
+class Event(EventBase):
     # primary fields
+    """
     name = models.CharField(max_length=150)
     place = models.CharField(max_length=200, blank=True)
     short_name = models.CharField(max_length=100)
@@ -30,6 +32,7 @@ class Event(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
     description = models.TextField()
+    """
     # custom fields
     annoncment = models.FileField(blank=True)
     event_protocol = models.FileField(blank=True)
