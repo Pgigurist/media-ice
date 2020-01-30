@@ -26,14 +26,26 @@ class Photo(models.Model):
     def __str__(self):
         return self.title
 
+class AbstractPost(models.Model):
+    #abstract model for Post/Feedback/News objects
+    class Meta:
+        abstract = True
 
-class Post(models.Model):
+    name = models.CharField(max_length=300, verbose_name=_("Название"))
+    pub_date = models.DateTimeField(auto_now_add=True, verbose_name=_("Дата публикации"))
+    text = models.TextField(blank=True, verbose_name=_("Текст"))
+
+
+
+class Post(AbstractPost):
+    """
     name = models.CharField(max_length=300)
     pub_date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=500, blank=True)
     text = models.TextField(blank=True)
     image = models.ForeignKey(Photo, on_delete=models.CASCADE, blank=True, default=None)
-    
+    """
+    image = models.ForeignKey(Photo, on_delete=models.CASCADE, blank=True, default=None, verbose_name=_("Изображение"))
     class Meta:
         verbose_name = 'публикация'
         verbose_name_plural = 'новости'
@@ -42,12 +54,15 @@ class Post(models.Model):
     def __str__(self):
         return self.name
 
-class Feedback(models.Model):
+class Feedback(AbstractPost):
+    """
     name = models.CharField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
     city = models.CharField(max_length=100)
     text = models.TextField(blank=True)
-    moderate = models.BooleanField(default=False)
+    """
+    moderate = models.BooleanField(default=False, verbose_name=_("Опубликовано"))
+    city = models.CharField(max_length=100, verbose_name=_("Город"))
 
 
     class Meta:
