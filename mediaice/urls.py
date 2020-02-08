@@ -27,5 +27,6 @@ urlpatterns = [
     url('gallery', views.gallery, name='gallery'),
     url('camps/', include('camps.urls')),
     url('competitions/', include('competitions.urls')),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)

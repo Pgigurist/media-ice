@@ -22,6 +22,14 @@ MUSIC_DIR = './competitions/'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '57u9u&bsn5--(z0#vhc!)c4)*6*7(v#c^+(@w$3w!#)xf$m9*5'
 
+#CAPTCHA SETUP
+CAPTCHA_CHALLANGE_FUNCT = 'captcha.helpers.random_char_challenge'
+CAPTCHA_IMAGE_SIZE = (150, 50)
+CAPTCHA_FONT_SIZE = (28)
+CAPTCHA_BACKGROUND_COLOR = '#cccccc'
+CAPTCHA_FOREGROUND_COLOR = '#001100'
+CAPTCHA_LENGTH = 6
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -40,6 +48,7 @@ INSTALLED_APPS = [
     'general',
     'competitions',
     'camps',
+    'captcha',
 ]
 
 MIDDLEWARE = [
