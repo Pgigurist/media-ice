@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('feedback/', views.feedback, name='feedback'),
     url('gallery', views.gallery, name='gallery'),
+    url('camps/', include('camps.urls')),
     url('competitions/', include('competitions.urls')),
-    #url('general', include('general.urls')),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)

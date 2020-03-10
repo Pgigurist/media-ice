@@ -31,7 +31,8 @@ def feedback(req):
                 'feedback_form' : form,
             }
         return render(req, 'general/feedback.html', context)
-    return render(req, 'general/feedback.html', {'posts':posts})
+
+    return render(req, 'general/feedback.html', {'posts':posts, 'form' : FeedbackForm()})
 
 def gallery(req):
     context = {
