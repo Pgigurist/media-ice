@@ -54,34 +54,3 @@ class CoachList(models.Model):
     def __str__(self):
         return self.coach.name
 
-#SHEDULE
-
-class Shedule(models.Model):
-    class Meta:
-        verbose_name = 'Расписание'
-        verbose_name_plural = 'Расписания'
-    title = models.CharField(
-            max_length=100,
-            verbose_name=_("подпись")
-        )
-    camp = models.ForeignKey(Camp, on_delete=models.CASCADE, verbose_name=_("сборы"))
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name=_("группа"))
-
-    def __str__(self):
-        return self.camp.name+' '+self.title+' '+self.group.title
-
-
-class ClusterItem(models.Model):
-    title = models.CharField(max_length=100)
-    time_start = models.TimeField(default=now, verbose_name=_("День начала"))
-    time_end = models.TimeField(default=now, verbose_name=_("День окончания"))
-
-class SheduleCluster(models.Model):
-    title = models.CharField(max_length=100)
-    shedule = models.ForeignKey(Shedule, on_delete=models.CASCADE)
-    date_start = models.DateField(default=now, verbose_name=_("День начала"))
-    date_end = models.DateField(default=now, verbose_name=_("День окончания"))
-
-class ItemInCluster(models.Model):
-    chedule_cluster = models.ForeignKey(SheduleCluster, on_delete=models.CASCADE)
-    claster_item = models.ForeignKey(ClusterItem, on_delete=models.CASCADE)
