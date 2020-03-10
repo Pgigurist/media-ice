@@ -1,11 +1,11 @@
 {% extends "general/base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container-flyide">
 	<div class="row pt-4">
 		{% for post in posts %}
          {% if post.moderate %}
-            <div class="col-md-4 col-lg-4 col-sm-6">
+            <div class="col-md-6 col-lg-4 col-sm-12 col">
                <div class="card mx-auto m-2">
                   <div class="card-body">
                      <h5 class="card-title">{{post.name}}</h5>
@@ -18,7 +18,7 @@
 		{% endfor %}
 	</div>
 	<div class="row pt-3">
-      <div class="col-sm-6 col-lg-4 col-md-4">
+      <div class="col-sm-12 col-lg-6 col-md-12">
          <button data-toggle="modal", data-target="#formModal" class="btn btn-primary">
             оставить отзыв
          </button>

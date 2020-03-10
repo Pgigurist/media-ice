@@ -3,6 +3,28 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
+ 
+class Albom(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_("Название альбома"))
+    class Meta:
+        verbose_name = 'Альбом'
+        verbose_name_plural = 'Альбомы'
+    def __str__(self):
+        return self.name
+  
+
+class Photo(models.Model):
+    title = models.CharField(max_length=300, verbose_name=_("Подпись"))
+    image = models.ImageField(upload_to='media/images/', verbose_name=_("Изображение"))
+    albom = models.ForeignKey(Albom, on_delete=models.CASCADE, blank=True)
+
+    class Meta:
+        verbose_name = 'фото'
+        verbose_name_plural = 'фотографии'
+
+    def __str__(self):
+        return self.title
+
 class EventBase(models.Model):
     #abstract model
 
@@ -15,17 +37,6 @@ class EventBase(models.Model):
     date_end = models.DateField()
     description = models.TextField( verbose_name=_("день окончания"))
 
-
-class Photo(models.Model):
-    title = models.CharField(max_length=300, verbose_name=_("Подпись"))
-    image = models.ImageField(upload_to='media/images/', verbose_name=_("Изображение"))
-    
-    class Meta:
-        verbose_name = 'фото'
-        verbose_name_plural = 'фотографии'
-
-    def __str__(self):
-        return self.title
 
 class AbstractPost(models.Model):
  
@@ -43,7 +54,6 @@ class AbstractPost(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name=_("Дата публикации"))
     text = models.TextField(blank=True, verbose_name=_("Текст"))
     news_type = models.CharField(max_length=1, verbose_name=_("Тип новости"), choices=POST_TYPE, blank=True)
-
 
 
 

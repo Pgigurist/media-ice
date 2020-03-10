@@ -1,0 +1,16 @@
+{% extends "general/base.html" %}
+{% block content %}
+
+<div class="container">
+{% for event in events %}
+   <div class="row pt-4">
+      <div class="col">
+         <h4>{{event.name}}</h4>
+         <h5>{{event.place}}</h5>
+         <h5>Начало {{event.date_start}}</h5>
+         <h5>Окончание {{event.date_end}}</h5>
+      </div>
+   </div>
+{% endfor %}
+</div>
+{% endblock %}
